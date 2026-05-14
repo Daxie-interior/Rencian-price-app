@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
@@ -18,7 +17,6 @@
     background: #0f1117;
     color: #e2e8f0;
     min-height: 100vh;
-    min-height: -webkit-fill-available;
   }
   :root {
     --gold: #f0b429;
@@ -28,320 +26,195 @@
     --muted: #64748b;
     --text2: #94a3b8;
   }
-
-/* HEADER */
-.header {
-background: var(–card);
-border-bottom: 1px solid var(–border);
-padding: 14px 16px;
-display: flex;
-align-items: center;
-justify-content: space-between;
-position: sticky;
-top: 0;
-z-index: 10;
-}
-.logo { display: flex; align-items: center; gap: 10px; }
-.logo-icon { font-size: 24px; }
-.logo-title { font-weight: 700; font-size: 16px; color: var(–gold); }
-.logo-sub { font-size: 11px; color: var(–muted); }
-.btn-add {
-background: var(–gold);
-color: #0f1117;
-border: none;
-border-radius: 8px;
-padding: 8px 14px;
-font-weight: 700;
-font-size: 14px;
-cursor: pointer;
-}
-
-/* SEARCH & FILTER */
-.search-area {
-padding: 12px 16px 8px;
-background: var(–bg);
-position: sticky;
-top: 61px;
-z-index: 9;
-}
-.search-input {
-width: 100%;
-padding: 10px 14px;
-background: var(–card);
-border: 1px solid var(–border);
-border-radius: 10px;
-color: #e2e8f0;
-font-size: 15px;
-outline: none;
-font-family: inherit;
-}
-.search-input::placeholder { color: var(–muted); }
-.cat-scroll {
-display: flex;
-gap: 8px;
-overflow-x: auto;
-padding: 10px 16px 4px;
-scrollbar-width: none;
-background: var(–bg);
-position: sticky;
-top: 113px;
-z-index: 9;
-}
-.cat-scroll::-webkit-scrollbar { display: none; }
-.cat-btn {
-white-space: nowrap;
-padding: 6px 14px;
-border-radius: 20px;
-border: 1px solid var(–border);
-background: var(–card);
-color: var(–muted);
-font-size: 13px;
-cursor: pointer;
-font-family: inherit;
-}
-.cat-btn.active {
-background: #f0b42920;
-border-color: var(–gold);
-color: var(–gold);
-font-weight: 700;
-}
-
-/* CARD LIST */
-.list { padding: 10px 16px 100px; }
-.count { font-size: 12px; color: var(–muted); margin-bottom: 10px; }
-
-.card {
-background: var(–card);
-border: 1px solid var(–border);
-border-radius: 14px;
-margin-bottom: 10px;
-overflow: hidden;
-transition: border-color .15s;
-}
-.card.open { border-color: var(–gold); }
-.card-header {
-padding: 14px;
-cursor: pointer;
-display: flex;
-align-items: flex-start;
-justify-content: space-between;
-gap: 10px;
-}
-.card-keyword { font-weight: 700; font-size: 16px; margin-bottom: 5px; }
-.card-meta { display: flex; align-items: center; gap: 6px; }
-.tag {
-background: var(–border);
-color: var(–text2);
-border-radius: 5px;
-padding: 2px 8px;
-font-size: 11px;
-}
-.tag-unit { color: var(–muted); font-size: 12px; }
-.profit-badge {
-border-radius: 8px;
-padding: 4px 10px;
-font-weight: 700;
-font-size: 15px;
-flex-shrink: 0;
-}
-.price-row {
-display: flex;
-align-items: center;
-gap: 8px;
-padding: 0 14px 14px;
-}
-.price-box { flex: 1; }
-.price-label { font-size: 11px; color: var(–muted); margin-bottom: 2px; }
-.price-cost { font-weight: 700; font-size: 20px; color: var(–text2); }
-.price-out { font-weight: 700; font-size: 20px; color: var(–gold); }
-.price-arrow { color: var(–border); font-size: 18px; }
-
-/* DETAIL */
-.detail {
-padding: 14px;
-border-top: 1px solid var(–border);
-display: none;
-}
-.card.open .detail { display: block; }
-.detail-title { font-weight: 600; font-size: 13px; color: var(–text2); margin-bottom: 10px; }
-.mat-row {
-display: flex;
-justify-content: space-between;
-align-items: center;
-font-size: 13px;
-padding: 7px 0;
-border-bottom: 1px solid #1e274050;
-}
-.mat-name { color: #e2e8f0; }
-.mat-spec { color: var(–muted); font-size: 11px; }
-.mat-prices { color: var(–text2); font-size: 12px; white-space: nowrap; }
-.mat-prices b { color: #e2e8f0; }
-.note-box {
-background: var(–border);
-border-radius: 8px;
-padding: 8px 12px;
-font-size: 13px;
-color: var(–text2);
-margin: 10px 0;
-}
-.action-row { display: flex; gap: 8px; margin-top: 12px; }
-.btn-copy {
-flex: 2;
-background: #f0b42920;
-color: var(–gold);
-border: 1px solid #f0b42940;
-border-radius: 8px;
-padding: 10px;
-font-size: 13px;
-font-weight: 700;
-cursor: pointer;
-font-family: inherit;
-}
-.btn-copy.copied { background: #22c55e20; color: #22c55e; border-color: #22c55e40; }
-.btn-edit {
-flex: 1;
-background: transparent;
-color: var(–muted);
-border: 1px solid var(–border);
-border-radius: 8px;
-padding: 10px;
-font-size: 13px;
-cursor: pointer;
-font-family: inherit;
-}
-.btn-del {
-flex: 1;
-background: transparent;
-color: #ef444480;
-border: 1px solid #ef444430;
-border-radius: 8px;
-padding: 10px;
-font-size: 13px;
-cursor: pointer;
-font-family: inherit;
-}
-
-/* MODAL */
-.overlay {
-display: none;
-position: fixed;
-inset: 0;
-background: #00000088;
-z-index: 100;
-align-items: flex-end;
-}
-.overlay.show { display: flex; }
-.modal {
-background: var(–card);
-border-radius: 20px 20px 0 0;
-width: 100%;
-max-height: 90vh;
-overflow-y: auto;
-padding: 20px 16px 40px;
-border-top: 1px solid var(–border);
-}
-.modal-header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-font-weight: 700;
-font-size: 17px;
-margin-bottom: 18px;
-}
-.close-btn {
-background: none;
-border: none;
-color: var(–muted);
-font-size: 22px;
-cursor: pointer;
-line-height: 1;
-}
-.label {
-display: flex;
-flex-direction: column;
-gap: 6px;
-font-size: 13px;
-color: var(–text2);
-margin-bottom: 12px;
-}
-.input {
-background: var(–bg);
-border: 1px solid var(–border);
-border-radius: 8px;
-padding: 10px 12px;
-color: #e2e8f0;
-font-size: 15px;
-outline: none;
-width: 100%;
-font-family: inherit;
-}
-.form-row { display: flex; gap: 10px; }
-.form-row .label { flex: 1; }
-.section-title {
-font-weight: 600;
-font-size: 14px;
-color: var(–text2);
-margin: 16px 0 10px;
-border-top: 1px solid var(–border);
-padding-top: 14px;
-}
-.mat-form-row {
-display: flex;
-gap: 6px;
-margin-bottom: 8px;
-align-items: center;
-}
-.mat-form-row .input { font-size: 13px; padding: 8px 10px; }
-.del-mat-btn {
-background: none;
-border: none;
-color: #ef4444;
-font-size: 18px;
-cursor: pointer;
-padding: 4px;
-flex-shrink: 0;
-}
-.add-mat-btn {
-background: transparent;
-border: 1px dashed var(–border);
-color: var(–muted);
-border-radius: 8px;
-padding: 10px;
-width: 100%;
-cursor: pointer;
-font-size: 14px;
-font-family: inherit;
-margin-bottom: 16px;
-}
-.modal-footer { display: flex; gap: 10px; margin-top: 6px; }
-.btn-primary {
-flex: 1;
-background: var(–gold);
-color: #0f1117;
-border: none;
-border-radius: 10px;
-padding: 13px;
-font-weight: 700;
-font-size: 15px;
-cursor: pointer;
-font-family: inherit;
-}
-.btn-secondary {
-background: transparent;
-color: var(–muted);
-border: 1px solid var(–border);
-border-radius: 10px;
-padding: 13px 20px;
-font-size: 15px;
-cursor: pointer;
-font-family: inherit;
-}
-
-/* EMPTY */
-.empty { text-align: center; padding: 60px 20px; color: var(–muted); }
-.empty-icon { font-size: 48px; margin-bottom: 12px; }
+  .header {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .logo { display: flex; align-items: center; gap: 10px; }
+  .logo-icon { font-size: 24px; }
+  .logo-title { font-weight: 700; font-size: 16px; color: var(--gold); }
+  .logo-sub { font-size: 11px; color: var(--muted); }
+  .btn-add {
+    background: var(--gold);
+    color: #0f1117;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .search-area {
+    padding: 12px 16px 8px;
+    background: var(--bg);
+    position: sticky;
+    top: 61px;
+    z-index: 9;
+  }
+  .search-input {
+    width: 100%;
+    padding: 10px 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: #e2e8f0;
+    font-size: 15px;
+    outline: none;
+    font-family: inherit;
+  }
+  .search-input::placeholder { color: var(--muted); }
+  .cat-scroll {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 10px 16px 4px;
+    scrollbar-width: none;
+    background: var(--bg);
+    position: sticky;
+    top: 113px;
+    z-index: 9;
+  }
+  .cat-scroll::-webkit-scrollbar { display: none; }
+  .cat-btn {
+    white-space: nowrap;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--muted);
+    font-size: 13px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .cat-btn.active {
+    background: #f0b42920;
+    border-color: var(--gold);
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .list { padding: 10px 16px 100px; }
+  .count { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: border-color .15s;
+  }
+  .card.open { border-color: var(--gold); }
+  .card-header {
+    padding: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .card-keyword { font-weight: 700; font-size: 16px; margin-bottom: 5px; }
+  .card-meta { display: flex; align-items: center; gap: 6px; }
+  .tag {
+    background: var(--border);
+    color: var(--text2);
+    border-radius: 5px;
+    padding: 2px 8px;
+    font-size: 11px;
+  }
+  .tag-unit { color: var(--muted); font-size: 12px; }
+  .profit-badge {
+    border-radius: 8px;
+    padding: 4px 10px;
+    font-weight: 700;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+  .price-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 14px 14px;
+  }
+  .price-box { flex: 1; }
+  .price-label { font-size: 11px; color: var(--muted); margin-bottom: 2px; }
+  .price-cost { font-weight: 700; font-size: 20px; color: var(--text2); }
+  .price-out { font-weight: 700; font-size: 20px; color: var(--gold); }
+  .price-arrow { color: var(--border); font-size: 18px; }
+  .detail {
+    padding: 14px;
+    border-top: 1px solid var(--border);
+    display: none;
+  }
+  .card.open .detail { display: block; }
+  .detail-title { font-weight: 600; font-size: 13px; color: var(--text2); margin-bottom: 10px; }
+  .mat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    padding: 7px 0;
+    border-bottom: 1px solid #1e274050;
+  }
+  .mat-name { color: #e2e8f0; }
+  .mat-spec { color: var(--muted); font-size: 11px; }
+  .mat-prices { color: var(--text2); font-size: 12px; white-space: nowrap; }
+  .mat-prices b { color: #e2e8f0; }
+  .note-box {
+    background: var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: var(--text2);
+    margin: 10px 0;
+  }
+  .action-row { display: flex; gap: 8px; margin-top: 12px; }
+  .btn-copy {
+    flex: 2;
+    background: #f0b42920;
+    color: var(--gold);
+    border: 1px solid #f0b42940;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .btn-copy.copied { background: #22c55e20; color: #22c55e; border-color: #22c55e40; }
+  .loading {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+  }
+  .loading-icon { font-size: 36px; margin-bottom: 12px; animation: spin 1s linear infinite; display: inline-block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .empty { text-align: center; padding: 60px 20px; color: var(--muted); }
+  .empty-icon { font-size: 48px; margin-bottom: 12px; }
+  .sync-bar {
+    background: #22c55e20;
+    color: #22c55e;
+    text-align: center;
+    padding: 8px;
+    font-size: 12px;
+    display: none;
+  }
+  .sync-bar.show { display: block; }
+  .error-bar {
+    background: #ef444420;
+    color: #ef4444;
+    text-align: center;
+    padding: 8px;
+    font-size: 12px;
+    display: none;
+  }
+  .error-bar.show { display: block; }
 </style>
-
 </head>
 <body>
 
@@ -353,8 +226,11 @@ font-family: inherit;
       <div class="logo-sub">內部查價系統</div>
     </div>
   </div>
-  <button class="btn-add" onclick="openForm()">＋ 新增</button>
+  <button class="btn-add" onclick="syncData()">↻ 同步</button>
 </div>
+
+<div class="sync-bar" id="sync-bar">✓ 資料已更新</div>
+<div class="error-bar" id="error-bar">⚠ 無法連線，顯示快取資料</div>
 
 <div class="search-area">
   <input class="search-input" placeholder="🔍 搜尋項目..." oninput="render()" id="search">
@@ -367,109 +243,11 @@ font-family: inherit;
   <div id="cards"></div>
 </div>
 
-<!-- FORM MODAL -->
-
-<div class="overlay" id="overlay" onclick="handleOverlayClick(event)">
-  <div class="modal" id="modal">
-    <div class="modal-header">
-      <span id="form-title">新增項目</span>
-      <button class="close-btn" onclick="closeForm()">✕</button>
-    </div>
-
-```
-<input type="hidden" id="edit-id">
-
-<div class="form-row">
-  <label class="label">關鍵字 *
-    <input class="input" id="f-keyword" placeholder="例：天花板木作平釘">
-  </label>
-</div>
-<div class="form-row">
-  <label class="label">分類
-    <select class="input" id="f-category">
-      <option>天花板</option><option>地板</option><option>隔間</option>
-      <option>水電</option><option>油漆</option><option>其他</option>
-    </select>
-  </label>
-  <label class="label">單位
-    <input class="input" id="f-unit" placeholder="坪/尺/才">
-  </label>
-</div>
-<div class="form-row">
-  <label class="label">內部成本 *
-    <input class="input" id="f-cost" type="number" placeholder="6000">
-  </label>
-  <label class="label">外部報價 *
-    <input class="input" id="f-price" type="number" placeholder="8000">
-  </label>
-</div>
-<label class="label">備註
-  <input class="input" id="f-notes" placeholder="例：含批土，不含油漆">
-</label>
-
-<div class="section-title">📦 材料細項</div>
-<div id="mat-list"></div>
-<button class="add-mat-btn" onclick="addMatRow()">＋ 新增材料</button>
-
-<div class="modal-footer">
-  <button class="btn-secondary" onclick="closeForm()">取消</button>
-  <button class="btn-primary" onclick="saveItem()">儲存</button>
-</div>
-```
-
-  </div>
-</div>
-
 <script>
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyYe0mbRCTOG9OsfXFAiQrDS-VPMHP-Z_DrOyYmbJ8yI9Ex0goyFo4g4841na6S4YEs2Q/exec';
 const CATS = ['全部','天花板','地板','隔間','水電','油漆','其他'];
 let currentCat = '全部';
-let editingId = null;
-
-let data = JSON.parse(localStorage.getItem('price-data') || 'null') || [
-  {
-    id: 1, keyword: '天花板木作平釘', category: '天花板', unit: '坪',
-    internalCost: 6000, externalPrice: 8000,
-    notes: '含平面批土，不含油漆',
-    materials: [
-      {name:'矽酸鈣板 6mm', spec:'張', cost:350, price:500},
-      {name:'輕鋼架骨料', spec:'才', cost:80, price:120},
-      {name:'角材 1.2寸', spec:'支', cost:60, price:90},
-      {name:'工資（平釘）', spec:'坪', cost:800, price:1200},
-    ]
-  },
-  {
-    id: 2, keyword: '天花板間接燈溝', category: '天花板', unit: '尺',
-    internalCost: 1200, externalPrice: 1800,
-    notes: '含燈溝造型，不含燈具',
-    materials: [
-      {name:'矽酸鈣板 6mm', spec:'張', cost:350, price:500},
-      {name:'角材 1.2寸', spec:'支', cost:60, price:90},
-      {name:'工資（燈溝）', spec:'尺', cost:300, price:450},
-    ]
-  },
-  {
-    id: 3, keyword: '地板海島型木地板', category: '地板', unit: '坪',
-    internalCost: 4500, externalPrice: 7000,
-    notes: '報價含基本配件，不含踢腳板',
-    materials: [
-      {name:'海島型木地板 3.5分', spec:'坪', cost:2800, price:4500},
-      {name:'防潮布', spec:'坪', cost:50, price:80},
-      {name:'工資（施工）', spec:'坪', cost:600, price:900},
-    ]
-  },
-  {
-    id: 4, keyword: '隔間輕隔間單面', category: '隔間', unit: '坪',
-    internalCost: 3200, externalPrice: 4800,
-    notes: '單面板，不含隔音棉及批土',
-    materials: [
-      {name:'矽酸鈣板 9mm', spec:'張', cost:480, price:700},
-      {name:'C型鋼 3.5吋', spec:'支', cost:120, price:180},
-      {name:'工資（輕隔間）', spec:'坪', cost:900, price:1400},
-    ]
-  }
-];
-
-function save() { localStorage.setItem('price-data', JSON.stringify(data)); }
+let data = JSON.parse(localStorage.getItem('price-data-sheet') || '[]');
 
 function profitRate(item) {
   return (item.externalPrice - item.internalCost) / item.externalPrice;
@@ -484,7 +262,7 @@ function filtered() {
   const s = document.getElementById('search').value.toLowerCase();
   return data.filter(item => {
     const matchCat = currentCat === '全部' || item.category === currentCat;
-    const matchSearch = !s || item.keyword.includes(s) || item.category.includes(s);
+    const matchSearch = !s || (item.keyword||'').toLowerCase().includes(s) || (item.category||'').includes(s);
     return matchCat && matchSearch;
   });
 }
@@ -493,19 +271,21 @@ function formatReply(item) {
   const rate = (profitRate(item)*100).toFixed(0);
   let txt = `【${item.keyword}】\n`;
   txt += `單位：${item.unit}\n`;
-  txt += `內部成本：$${item.internalCost.toLocaleString()}\n`;
-  txt += `外部報價：$${item.externalPrice.toLocaleString()}\n`;
+  txt += `內部成本：$${Number(item.internalCost).toLocaleString()}\n`;
+  txt += `外部報價：$${Number(item.externalPrice).toLocaleString()}\n`;
   txt += `利潤：${rate}%\n`;
   if (item.notes) txt += `備註：${item.notes}\n`;
-  txt += `\n📦 材料細項：\n`;
-  item.materials.forEach(m => {
-    txt += `• ${m.name}（${m.spec}）成本$${m.cost} / 報價$${m.price}\n`;
-  });
+  if (item.materials && item.materials.length) {
+    txt += `\n📦 材料細項：\n`;
+    item.materials.forEach(m => {
+      txt += `• ${m.name}（${m.spec}）成本$${m.cost} / 報價$${m.price}\n`;
+    });
+  }
   return txt;
 }
 
 function copyReply(id) {
-  const item = data.find(x => x.id === id);
+  const item = data.find(x => x.id == id);
   navigator.clipboard.writeText(formatReply(item)).then(() => {
     const btn = document.querySelector(`[data-copy="${id}"]`);
     if (btn) {
@@ -524,16 +304,7 @@ function toggleCard(id) {
   if (el) el.classList.toggle('open');
 }
 
-function deleteItem(id) {
-  if (confirm('確定要刪除這個項目嗎？')) {
-    data = data.filter(x => x.id !== id);
-    save();
-    render();
-  }
-}
-
 function render() {
-  // cats
   const catsEl = document.getElementById('cats');
   catsEl.innerHTML = CATS.map(c => {
     const cnt = c === '全部' ? data.length : data.filter(x => x.category === c).length;
@@ -543,6 +314,11 @@ function render() {
   const items = filtered();
   document.getElementById('count').textContent = `共 ${items.length} 項`;
 
+  if (items.length === 0 && data.length === 0) {
+    document.getElementById('cards').innerHTML = `<div class="loading"><div class="loading-icon">⟳</div><div>載入中...</div></div>`;
+    return;
+  }
+
   if (items.length === 0) {
     document.getElementById('cards').innerHTML = `<div class="empty"><div class="empty-icon">🔍</div>找不到符合的項目</div>`;
     return;
@@ -551,157 +327,15 @@ function render() {
   document.getElementById('cards').innerHTML = items.map(item => {
     const r = profitRate(item);
     const color = profitColor(r);
+    const mats = item.materials || [];
     return `
       <div class="card" data-card="${item.id}">
-        <div class="card-header" onclick="toggleCard(${item.id})">
+        <div class="card-header" onclick="toggleCard('${item.id}')">
           <div>
             <div class="card-keyword">${item.keyword}</div>
             <div class="card-meta">
-              <span class="tag">${item.category}</span>
-              <span class="tag-unit">/ ${item.unit}</span>
+              <span class="tag">${item.category||''}</span>
+              <span class="tag-unit">/ ${item.unit||''}</span>
             </div>
           </div>
-          <div class="profit-badge" style="background:${color}22;color:${color}">${(r*100).toFixed(0)}%</div>
-        </div>
-        <div class="price-row">
-          <div class="price-box">
-            <div class="price-label">內部成本</div>
-            <div class="price-cost">$${item.internalCost.toLocaleString()}</div>
-          </div>
-          <div class="price-arrow">→</div>
-          <div class="price-box">
-            <div class="price-label">外部報價</div>
-            <div class="price-out">$${item.externalPrice.toLocaleString()}</div>
-          </div>
-        </div>
-        <div class="detail">
-          <div class="detail-title">📦 材料細項</div>
-          ${item.materials.map(m => `
-            <div class="mat-row">
-              <span class="mat-name">${m.name}<span class="mat-spec">（${m.spec}）</span></span>
-              <span class="mat-prices">成本 <b>$${m.cost}</b> ／ 報價 <b>$${m.price}</b></span>
-            </div>
-          `).join('')}
-          ${item.notes ? `<div class="note-box">📝 ${item.notes}</div>` : ''}
-          <div class="action-row">
-            <button class="btn-copy" data-copy="${item.id}" onclick="copyReply(${item.id})">複製 Line 回覆</button>
-            <button class="btn-edit" onclick="openForm(${item.id})">編輯</button>
-            <button class="btn-del" onclick="deleteItem(${item.id})">刪除</button>
-          </div>
-        </div>
-      </div>
-    `;
-  }).join('');
-}
-
-function setCat(c) { currentCat = c; render(); }
-
-// FORM
-function openForm(id = null) {
-  editingId = id;
-  document.getElementById('form-title').textContent = id ? '編輯項目' : '新增項目';
-  document.getElementById('edit-id').value = id || '';
-
-  if (id) {
-    const item = data.find(x => x.id === id);
-    document.getElementById('f-keyword').value = item.keyword;
-    document.getElementById('f-category').value = item.category;
-    document.getElementById('f-unit').value = item.unit;
-    document.getElementById('f-cost').value = item.internalCost;
-    document.getElementById('f-price').value = item.externalPrice;
-    document.getElementById('f-notes').value = item.notes || '';
-    renderMatForm(item.materials);
-  } else {
-    document.getElementById('f-keyword').value = '';
-    document.getElementById('f-category').value = '天花板';
-    document.getElementById('f-unit').value = '坪';
-    document.getElementById('f-cost').value = '';
-    document.getElementById('f-price').value = '';
-    document.getElementById('f-notes').value = '';
-    renderMatForm([{name:'',spec:'',cost:'',price:''}]);
-  }
-
-  document.getElementById('overlay').classList.add('show');
-}
-
-function closeForm() {
-  document.getElementById('overlay').classList.remove('show');
-  editingId = null;
-}
-
-function handleOverlayClick(e) {
-  if (e.target === document.getElementById('overlay')) closeForm();
-}
-
-function renderMatForm(mats) {
-  document.getElementById('mat-list').innerHTML = mats.map((m, i) => `
-    <div class="mat-form-row" id="mat-row-${i}">
-      <input class="input" placeholder="材料名稱" value="${m.name}" style="flex:2" data-mat="${i}" data-field="name">
-      <input class="input" placeholder="單位" value="${m.spec}" style="flex:0.8" data-mat="${i}" data-field="spec">
-      <input class="input" placeholder="成本" type="number" value="${m.cost}" style="flex:1" data-mat="${i}" data-field="cost">
-      <input class="input" placeholder="報價" type="number" value="${m.price}" style="flex:1" data-mat="${i}" data-field="price">
-      <button class="del-mat-btn" onclick="delMatRow(${i})">✕</button>
-    </div>
-  `).join('');
-}
-
-function getMats() {
-  const rows = document.querySelectorAll('[data-mat]');
-  const mats = {};
-  rows.forEach(el => {
-    const i = el.dataset.mat;
-    const f = el.dataset.field;
-    if (!mats[i]) mats[i] = {};
-    mats[i][f] = el.value;
-  });
-  return Object.values(mats).map(m => ({
-    name: m.name || '', spec: m.spec || '',
-    cost: Number(m.cost) || 0, price: Number(m.price) || 0
-  }));
-}
-
-function addMatRow() {
-  const mats = getMats();
-  mats.push({name:'',spec:'',cost:'',price:''});
-  renderMatForm(mats);
-}
-
-function delMatRow(i) {
-  const mats = getMats();
-  mats.splice(i, 1);
-  renderMatForm(mats.length ? mats : [{name:'',spec:'',cost:'',price:''}]);
-}
-
-function saveItem() {
-  const keyword = document.getElementById('f-keyword').value.trim();
-  const cost = Number(document.getElementById('f-cost').value);
-  const price = Number(document.getElementById('f-price').value);
-  if (!keyword || !cost || !price) { alert('請填寫關鍵字、內部成本、外部報價'); return; }
-
-  const item = {
-    id: editingId || Date.now(),
-    keyword,
-    category: document.getElementById('f-category').value,
-    unit: document.getElementById('f-unit').value || '坪',
-    internalCost: cost,
-    externalPrice: price,
-    notes: document.getElementById('f-notes').value.trim(),
-    materials: getMats().filter(m => m.name)
-  };
-
-  if (editingId) {
-    data = data.map(x => x.id === editingId ? item : x);
-  } else {
-    data.push(item);
-  }
-
-  save();
-  closeForm();
-  render();
-}
-
-render();
-</script>
-
-</body>
-</html>
+          <div class
