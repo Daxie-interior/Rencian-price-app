@@ -13,212 +13,58 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-  body {
-    font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
-    background: #0f1117;
-    color: #e2e8f0;
-    min-height: 100vh;
-  }
-  :root {
-    --gold: #f0b429;
-    --bg: #0f1117;
-    --card: #161b27;
-    --border: #1e2740;
-    --muted: #64748b;
-    --text2: #94a3b8;
-  }
-  .header {
-    background: var(--card);
-    border-bottom: 1px solid var(--border);
-    padding: 14px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-  }
+  body { font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; background: #0f1117; color: #e2e8f0; min-height: 100vh; }
+  :root { --gold: #f0b429; --bg: #0f1117; --card: #161b27; --border: #1e2740; --muted: #64748b; --text2: #94a3b8; }
+  .header { background: var(--card); border-bottom: 1px solid var(--border); padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; }
   .logo { display: flex; align-items: center; gap: 10px; }
   .logo-icon { font-size: 24px; }
   .logo-title { font-weight: 700; font-size: 16px; color: var(--gold); }
   .logo-sub { font-size: 11px; color: var(--muted); }
-  .btn-add {
-    background: var(--gold);
-    color: #0f1117;
-    border: none;
-    border-radius: 8px;
-    padding: 8px 14px;
-    font-weight: 700;
-    font-size: 14px;
-    cursor: pointer;
-  }
-  .search-area {
-    padding: 12px 16px 8px;
-    background: var(--bg);
-    position: sticky;
-    top: 61px;
-    z-index: 9;
-  }
-  .search-input {
-    width: 100%;
-    padding: 10px 14px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    color: #e2e8f0;
-    font-size: 15px;
-    outline: none;
-    font-family: inherit;
-  }
+  .btn-sync { background: var(--gold); color: #0f1117; border: none; border-radius: 8px; padding: 8px 14px; font-weight: 700; font-size: 14px; cursor: pointer; font-family: inherit; }
+  .btn-sync:disabled { opacity: 0.6; }
+  .search-area { padding: 12px 16px 8px; background: var(--bg); position: sticky; top: 61px; z-index: 9; }
+  .search-input { width: 100%; padding: 10px 14px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; color: #e2e8f0; font-size: 15px; outline: none; font-family: inherit; }
   .search-input::placeholder { color: var(--muted); }
-  .cat-scroll {
-    display: flex;
-    gap: 8px;
-    overflow-x: auto;
-    padding: 10px 16px 4px;
-    scrollbar-width: none;
-    background: var(--bg);
-    position: sticky;
-    top: 113px;
-    z-index: 9;
-  }
+  .cat-scroll { display: flex; gap: 8px; overflow-x: auto; padding: 10px 16px 4px; scrollbar-width: none; background: var(--bg); position: sticky; top: 113px; z-index: 9; }
   .cat-scroll::-webkit-scrollbar { display: none; }
-  .cat-btn {
-    white-space: nowrap;
-    padding: 6px 14px;
-    border-radius: 20px;
-    border: 1px solid var(--border);
-    background: var(--card);
-    color: var(--muted);
-    font-size: 13px;
-    cursor: pointer;
-    font-family: inherit;
-  }
-  .cat-btn.active {
-    background: #f0b42920;
-    border-color: var(--gold);
-    color: var(--gold);
-    font-weight: 700;
-  }
+  .cat-btn { white-space: nowrap; padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border); background: var(--card); color: var(--muted); font-size: 13px; cursor: pointer; font-family: inherit; }
+  .cat-btn.active { background: #f0b42920; border-color: var(--gold); color: var(--gold); font-weight: 700; }
   .list { padding: 10px 16px 100px; }
   .count { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
-  .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    margin-bottom: 10px;
-    overflow: hidden;
-    transition: border-color .15s;
-  }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 10px; overflow: hidden; }
   .card.open { border-color: var(--gold); }
-  .card-header {
-    padding: 14px;
-    cursor: pointer;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 10px;
-  }
+  .card-header { padding: 14px; cursor: pointer; display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
   .card-keyword { font-weight: 700; font-size: 16px; margin-bottom: 5px; }
   .card-meta { display: flex; align-items: center; gap: 6px; }
-  .tag {
-    background: var(--border);
-    color: var(--text2);
-    border-radius: 5px;
-    padding: 2px 8px;
-    font-size: 11px;
-  }
+  .tag { background: var(--border); color: var(--text2); border-radius: 5px; padding: 2px 8px; font-size: 11px; }
   .tag-unit { color: var(--muted); font-size: 12px; }
-  .profit-badge {
-    border-radius: 8px;
-    padding: 4px 10px;
-    font-weight: 700;
-    font-size: 15px;
-    flex-shrink: 0;
-  }
-  .price-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 0 14px 14px;
-  }
+  .profit-badge { border-radius: 8px; padding: 4px 10px; font-weight: 700; font-size: 15px; flex-shrink: 0; }
+  .price-row { display: flex; align-items: center; gap: 8px; padding: 0 14px 14px; }
   .price-box { flex: 1; }
   .price-label { font-size: 11px; color: var(--muted); margin-bottom: 2px; }
   .price-cost { font-weight: 700; font-size: 20px; color: var(--text2); }
   .price-out { font-weight: 700; font-size: 20px; color: var(--gold); }
   .price-arrow { color: var(--border); font-size: 18px; }
-  .detail {
-    padding: 14px;
-    border-top: 1px solid var(--border);
-    display: none;
-  }
+  .detail { padding: 14px; border-top: 1px solid var(--border); display: none; }
   .card.open .detail { display: block; }
   .detail-title { font-weight: 600; font-size: 13px; color: var(--text2); margin-bottom: 10px; }
-  .mat-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 13px;
-    padding: 7px 0;
-    border-bottom: 1px solid #1e274050;
-  }
+  .mat-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; padding: 7px 0; border-bottom: 1px solid #1e274050; }
   .mat-name { color: #e2e8f0; }
   .mat-spec { color: var(--muted); font-size: 11px; }
   .mat-prices { color: var(--text2); font-size: 12px; white-space: nowrap; }
   .mat-prices b { color: #e2e8f0; }
-  .note-box {
-    background: var(--border);
-    border-radius: 8px;
-    padding: 8px 12px;
-    font-size: 13px;
-    color: var(--text2);
-    margin: 10px 0;
-  }
+  .note-box { background: var(--border); border-radius: 8px; padding: 8px 12px; font-size: 13px; color: var(--text2); margin: 10px 0; }
   .action-row { display: flex; gap: 8px; margin-top: 12px; }
-  .btn-copy {
-    flex: 2;
-    background: #f0b42920;
-    color: var(--gold);
-    border: 1px solid #f0b42940;
-    border-radius: 8px;
-    padding: 10px;
-    font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
-    font-family: inherit;
-  }
+  .btn-copy { flex: 1; background: #f0b42920; color: var(--gold); border: 1px solid #f0b42940; border-radius: 8px; padding: 10px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit; }
   .btn-copy.copied { background: #22c55e20; color: #22c55e; border-color: #22c55e40; }
-  .loading {
-    text-align: center;
-    padding: 60px 20px;
-    color: var(--muted);
-  }
-  .loading-icon { font-size: 36px; margin-bottom: 12px; animation: spin 1s linear infinite; display: inline-block; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .empty { text-align: center; padding: 60px 20px; color: var(--muted); }
-  .empty-icon { font-size: 48px; margin-bottom: 12px; }
-  .sync-bar {
-    background: #22c55e20;
-    color: #22c55e;
-    text-align: center;
-    padding: 8px;
-    font-size: 12px;
-    display: none;
-  }
-  .sync-bar.show { display: block; }
-  .error-bar {
-    background: #ef444420;
-    color: #ef4444;
-    text-align: center;
-    padding: 8px;
-    font-size: 12px;
-    display: none;
-  }
-  .error-bar.show { display: block; }
+  .notice { text-align: center; padding: 8px 16px; font-size: 12px; display: none; }
+  .notice.show { display: block; }
+  .notice.ok { color: #22c55e; background: #22c55e15; }
+  .notice.err { color: #ef4444; background: #ef444415; }
+  .empty { text-align: center; padding: 60px 20px; color: var(--muted); font-size: 14px; }
 </style>
 </head>
 <body>
-
 <div class="header">
   <div class="logo">
     <span class="logo-icon">⚒</span>
@@ -227,116 +73,99 @@
       <div class="logo-sub">內部查價系統</div>
     </div>
   </div>
-  <button class="btn-add" onclick="syncData()">↻ 同步</button>
+  <button class="btn-sync" id="syncBtn" onclick="syncData()">↻ 同步</button>
 </div>
-
-<div class="sync-bar" id="sync-bar">✓ 資料已更新</div>
-<div class="error-bar" id="error-bar">⚠ 無法連線，顯示快取資料</div>
-
+<div class="notice" id="notice"></div>
 <div class="search-area">
   <input class="search-input" placeholder="🔍 搜尋項目..." oninput="render()" id="search">
 </div>
-
 <div class="cat-scroll" id="cats"></div>
-
 <div class="list">
   <div class="count" id="count"></div>
   <div id="cards"></div>
 </div>
-
 <script>
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwyqeDYYuz_JbN8dFlB4A4Yl6iGhg7bcK6BWW6IZGA2s6FH9878pMbw_URH8xYsA0oHkw/exec';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzwIkimbCt_aDr7koqaxiWKHlguDEtnxqzoXVsson-w6MrawXuy-GTC04GBoIz8k-elhg/exec';
 const CATS = ['全部','天花板','地板','隔間','水電','油漆','其他'];
 let currentCat = '全部';
-let data = JSON.parse(localStorage.getItem('price-data-sheet') || '[]');
+let data = [];
 
-function profitRate(item) {
-  return (item.externalPrice - item.internalCost) / item.externalPrice;
-}
+try { data = JSON.parse(localStorage.getItem(‘price-data-v3’) || ‘[]’); } catch(e) {}
+
+function profitRate(item) { return (item.externalPrice - item.internalCost) / item.externalPrice; }
 function profitColor(r) {
-  if (r >= 0.35) return '#22c55e';
-  if (r >= 0.25) return '#f59e0b';
-  return '#ef4444';
+if (r >= 0.35) return ‘#22c55e’;
+if (r >= 0.25) return ‘#f59e0b’;
+return ‘#ef4444’;
+}
+
+function showNotice(msg, type) {
+const el = document.getElementById(‘notice’);
+el.textContent = msg;
+el.className = ’notice show ’ + type;
+setTimeout(() => el.classList.remove(‘show’), 3000);
 }
 
 function filtered() {
-  const s = document.getElementById('search').value.toLowerCase();
-  return data.filter(item => {
-    const matchCat = currentCat === '全部' || item.category === currentCat;
-    const matchSearch = !s || (item.keyword||'').toLowerCase().includes(s) || (item.category||'').includes(s);
-    return matchCat && matchSearch;
-  });
+const s = document.getElementById(‘search’).value.toLowerCase();
+return data.filter(item => {
+const matchCat = currentCat === ‘全部’ || item.category === currentCat;
+const matchSearch = !s || (item.keyword||’’).toLowerCase().includes(s) || (item.category||’’).includes(s);
+return matchCat && matchSearch;
+});
 }
 
 function formatReply(item) {
-  const rate = (profitRate(item)*100).toFixed(0);
-  let txt = `【${item.keyword}】\n`;
-  txt += `單位：${item.unit}\n`;
-  txt += `內部成本：$${Number(item.internalCost).toLocaleString()}\n`;
-  txt += `外部報價：$${Number(item.externalPrice).toLocaleString()}\n`;
-  txt += `利潤：${rate}%\n`;
-  if (item.notes) txt += `備註：${item.notes}\n`;
-  if (item.materials && item.materials.length) {
-    txt += `\n📦 材料細項：\n`;
-    item.materials.forEach(m => {
-      txt += `• ${m.name}（${m.spec}）成本$${m.cost} / 報價$${m.price}\n`;
-    });
-  }
-  return txt;
+const rate = (profitRate(item)*100).toFixed(0);
+let txt = `【${item.keyword}】\n單位：${item.unit}\n內部成本：$${Number(item.internalCost).toLocaleString()}\n外部報價：$${Number(item.externalPrice).toLocaleString()}\n利潤：${rate}%\n`;
+if (item.notes) txt += `備註：${item.notes}\n`;
+if (item.materials && item.materials.length) {
+txt += `\n📦 材料細項：\n`;
+item.materials.forEach(m => { txt += `• ${m.name}（${m.spec}）成本$${m.cost} / 報價$${m.price}\n`; });
+}
+return txt;
 }
 
 function copyReply(id) {
-  const item = data.find(x => x.id == id);
-  navigator.clipboard.writeText(formatReply(item)).then(() => {
-    const btn = document.querySelector(`[data-copy="${id}"]`);
-    if (btn) {
-      btn.textContent = '✓ 已複製！';
-      btn.classList.add('copied');
-      setTimeout(() => {
-        btn.textContent = '複製 Line 回覆';
-        btn.classList.remove('copied');
-      }, 2000);
-    }
-  });
+const item = data.find(x => x.id == id);
+navigator.clipboard.writeText(formatReply(item)).then(() => {
+const btn = document.querySelector(`[data-copy="${id}"]`);
+if (btn) { btn.textContent = ‘✓ 已複製！’; btn.classList.add(‘copied’); setTimeout(() => { btn.textContent = ‘複製 Line 回覆’; btn.classList.remove(‘copied’); }, 2000); }
+});
 }
 
 function toggleCard(id) {
-  const el = document.querySelector(`[data-card="${id}"]`);
-  if (el) el.classList.toggle('open');
+const el = document.querySelector(`[data-card="${id}"]`);
+if (el) el.classList.toggle(‘open’);
 }
 
 function render() {
-  const catsEl = document.getElementById('cats');
-  catsEl.innerHTML = CATS.map(c => {
-    const cnt = c === '全部' ? data.length : data.filter(x => x.category === c).length;
-    return `<button class="cat-btn${currentCat===c?' active':''}" onclick="setCat('${c}')">${c} ${cnt}</button>`;
-  }).join('');
+const catsEl = document.getElementById(‘cats’);
+catsEl.innerHTML = CATS.map(c => {
+const cnt = c === ‘全部’ ? data.length : data.filter(x => x.category === c).length;
+return `<button class="cat-btn${currentCat===c?' active':''}" onclick="setCat('${c}')">${c} ${cnt}</button>`;
+}).join(’’);
+const items = filtered();
+document.getElementById(‘count’).textContent = `共 ${items.length} 項`;
+if (!items.length) { document.getElementById(‘cards’).innerHTML = `<div class="empty">按「同步」載入資料</div>`; return; }
+document.getElementById(‘cards’).innerHTML = items.map(item => {
+const r = profitRate(item);
+const color = profitColor(r);
+return `<div class="card" data-card="${item.id}"> <div class="card-header" onclick="toggleCard('${item.id}')"> <div> <div class="card-keyword">${item.keyword||''}</div> <div class="card-meta"><span class="tag">${item.category||''}</span><span class="tag-unit">/ ${item.unit||''}</span></div> </div> <div class="profit-badge" style="background:${color}22;color:${color}">${(r*100).toFixed(0)}%</div> </div> <div class="price-row"> <div class="price-box"><div class="price-label">內部成本</div><div class="price-cost">$${Number(item.internalCost).toLocaleString()}</div></div> <div class="price-arrow">→</div> <div class="price-box"><div class="price-label">外部報價</div><div class="price-out">$${Number(item.externalPrice).toLocaleString()}</div></div> </div> <div class="detail"> ${(item.materials||[]).length ? `<div class="detail-title">📦 材料細項</div>${(item.materials||[]).map(m=>`<div class="mat-row"><span class="mat-name">${m.name}<span class="mat-spec">（${m.spec}）</span></span><span class="mat-prices">成本 <b>$${m.cost}</b> ／ 報價 <b>$${m.price}</b></span></div>`).join(’’)}`: ''} ${item.notes ?`<div class="note-box">📝 ${item.notes}</div>` : ''} <div class="action-row"><button class="btn-copy" data-copy="${item.id}" onclick="copyReply('${item.id}')">複製 Line 回覆</button></div> </div> </div>`;
+}).join(’’);
+}
 
-  const items = filtered();
-  document.getElementById('count').textContent = `共 ${items.length} 項`;
+function setCat(c) { currentCat = c; render(); }
 
-  if (items.length === 0 && data.length === 0) {
-    document.getElementById('cards').innerHTML = `<div class="loading"><div class="loading-icon">⟳</div><div>載入中...</div></div>`;
-    return;
-  }
+function syncData() {
+const btn = document.getElementById(‘syncBtn’);
+btn.disabled = true;
+btn.textContent = ‘載入中…’;
 
-  if (items.length === 0) {
-    document.getElementById('cards').innerHTML = `<div class="empty"><div class="empty-icon">🔍</div>找不到符合的項目</div>`;
-    return;
-  }
+// 清除舊的 callback
+if (window._jsonpCb) { delete window._jsonpCb; }
+const old = document.getElementById(‘jsonp-script’);
+if (old) old.remove();
 
-  document.getElementById('cards').innerHTML = items.map(item => {
-    const r = profitRate(item);
-    const color = profitColor(r);
-    const mats = item.materials || [];
-    return `
-      <div class="card" data-card="${item.id}">
-        <div class="card-header" onclick="toggleCard('${item.id}')">
-          <div>
-            <div class="card-keyword">${item.keyword}</div>
-            <div class="card-meta">
-              <span class="tag">${item.category||''}</span>
-              <span class="tag-unit">/ ${item.unit||''}</span>
-            </div>
-          </div>
-          <div clas
+// 設定 timeout
+const t
